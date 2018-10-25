@@ -9,7 +9,7 @@ Register with subscription-manager
 
 [root@rhvm migrate]# subscription-manager register
 
-[root@rhvm migrate]# subscription-manager attach --pool=8a85f98c60c4fc0e0160c50f7eea0411
+[root@rhvm migrate]# subscription-manager attach --pool=<pool-id>
 
 Disable the rhui repositories that come with packet.net instances
 
