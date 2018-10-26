@@ -6,6 +6,7 @@ What you'll need
 
  - Set up a domain at google domains ($12/year)
  - Create a zone in google DNS (cheap)
+ - Change google domains DNS to point to the Google DNS name servers (easy to forget)
 
 Install RHVM
 
@@ -45,7 +46,7 @@ Install
 [root@rhvm migrate]# yum install rhvm
 
 
-[root@rhvm migrate]# engine-setup --answer-file=
+[root@rhvm migrate]# engine-setup --config=answerfile.txt #answerfile.txt is found in this github projects root
 
 [root@rhvm migrate]# 
 
