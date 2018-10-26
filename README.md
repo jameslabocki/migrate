@@ -53,6 +53,43 @@ Install
 [root@rhvm migrate]# 
 
 
+Install RHEL Hypervisors
+
+Deploy an instance of c1.small.x86	at packet.net
+
+[root@rhvh01 migrate]# subscription-manager unregister
+
+
+[root@rhvh01 migrate]# subscription-manager register
+
+
+[root@rhvh01 migrate]# subscription-manager attach --pool=<Pool ID>
+
+
+[root@rhvh01 migrate]# subscription-manager repos --disable=*
+
+[root@rhvh01 migrate]# subscription-manager repos --enable=rhel-7-server-rpms; \
+ subscription-manager repos --enable=rhel-7-server-rhv-4-mgmt-agent-rpms; \
+ subscription-manager repos --enable=rhel-7-server-ansible-2-rpms
+
+Sometimes, RHUI is configured and you'll need to disable it (although I didn't see this on each instance I launched at packet.net), maybe it's on an image by image basis.
+
+[root@rhvh01 migrate]# yum-config-manager --disable rhui*
+
+
+[root@rhvh01 migrate]# yum update 
+
+
+[root@rhvh01 migrate]# 
+
+[root@rhvh01 migrate]# 
+
+[root@rhvh01 migrate]# 
+
+[root@rhvh01 migrate]# 
+
+
+
 
 
 
