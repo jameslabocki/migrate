@@ -46,7 +46,7 @@ Install
 [root@rhvm migrate]# yum install rhvm
 
 
-[root@rhvm migrate]# engine-setup --config=answerfile.txt #answerfile.txt is found in this github projects root
+[root@rhvm migrate]# engine-setup --config-append=answerfile.txt #answerfile.txt is found in this github projects root
 
 [root@rhvm migrate]# 
 
