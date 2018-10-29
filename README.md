@@ -7,6 +7,13 @@ What you'll need
  - Set up a domain at google domains ($12/year)
  - Create a zone in google DNS (cheap)
  - Change google domains DNS to point to the Google DNS name servers (easy to forget)
+ 
+ 
+On your local machine
+
+Install https://docs.ansible.com/ansible/2.7/scenario_guides/guide_packet.html
+
+
 
 Install RHVM
 
