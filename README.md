@@ -97,6 +97,30 @@ Sometimes, RHUI is configured and you'll need to disable it (although I didn't s
 
 
 
+Configure NFS
+
+[root@nfs /]# subscription-manager unregister
+
+[root@nfs /]# subscription-manager register
+
+[root@nfs /]# subscription-manager attach --pool=<Pool ID>
+ 
+[root@nfs /]# yum install nfs-utils rpcbind
+
+[root@nfs /]# mkdir /mynfs
+
+[root@nfs /]# echo "/mynfs 1.2.3.4(no_root_squash,rw,sync)" >> /etc/exports #replace 1.2.3.4 with the IP address(es) of the RHV hosts.
+
+[root@nfs /]# firewall-cmd --zone=public --add-port=2049/tcp --permanent
+
+[root@nfs /]# firewall-cmd --reload
+
+[root@nfs /]# 
+
+
+
+
+
 
 
 
