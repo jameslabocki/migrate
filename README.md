@@ -105,17 +105,17 @@ Configure NFS
 
 [root@nfs /]# subscription-manager attach --pool=<Pool ID>
  
-[root@nfs /]# yum install nfs-utils rpcbind
+[root@nfs /]# yum install nfs-utils rpcbind -y
 
-[root@nfs /]# mkdir /mynfs
+[root@nfs /]# mkdir /opt/nfs
 
-[root@nfs /]# echo "/mynfs 1.2.3.4(no_root_squash,rw,sync)" >> /etc/exports #replace 1.2.3.4 with the IP address(es) of the RHV hosts.
+[root@nfs /]# echo "/opt/nfs 1.2.3.4(no_root_squash,rw,sync)" >> /etc/exports #replace 1.2.3.4 with the IP address(es) of the RHV hosts.
 
 [root@nfs /]# firewall-cmd --zone=public --add-port=2049/tcp --permanent
 
 [root@nfs /]# firewall-cmd --reload
 
-[root@nfs /]# 
+[root@nfs /]# systemctl start nfs
 
 
 
