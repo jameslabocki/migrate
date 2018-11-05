@@ -10,21 +10,21 @@
 
   - packet_device:
       project_id: 991c054d-3a3e-4747-978a-9f629718656d
-      hostnames: rhvh01.test.migr8.org
+      hostnames: "rhvh01.{{ domain }}"
       operating_system: rhel_7
       plan: c2.medium.x86
       facility: ewr1
 
   - packet_device:
       project_id: 991c054d-3a3e-4747-978a-9f629718656d
-      hostnames: rhvm01.test.migr8.org
+      hostnames: "rhvm01.{{ domain }}"
       operating_system: rhel_7
       plan: c2.medium.x86
       facility: ewr1
 
   - packet_device:
       project_id: 991c054d-3a3e-4747-978a-9f629718656d
-      hostnames: nfs.test.migr8.org
+      hostnames: "nfs.{{ domain }}"
       operating_system: rhel_7
       plan: c2.medium.x86
       facility: ewr1
