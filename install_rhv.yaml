@@ -1,0 +1,6 @@
+# install_rhv.yml
+
+- name: install rhv
+  hosts: rhvm01.test.migr8.org
+  roles:
+    - rhvm

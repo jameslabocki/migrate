@@ -1,0 +1,59 @@
+---
+# These tasks install rhvm
+
+  - name: Create a file
+    file:
+      path: "/tmp/thisisatestfile"
+      state: touch
+
+  - name: Subscription Manager Unregister
+    redhat_subscription:
+      state: absent  
+
+
+  - name: Subscription Manager Register
+    redhat_subscription:
+      state: present
+      username: "{{ rhsm_user }}"
+      password: "{{ rhsm_pass }}"
+      pool_ids: "{{ rhsm_pool }}"
+
+  - name: Subscription Manager Disable All Repos
+    command: subscription-manager repos --disable=*
+
+  - name: Subscription Manager Enable rhel-7-server-rpms
+    command: subscription-manager repos --enable=rhel-7-server-rpms
+
+  - name: Subscription Manager Enable rhel-7-server-supplementary-rpms
+    command: subscription-manager repos --enable=rhel-7-server-supplementary-rpms
+
+  - name: Subscription Manager Enable rhel-7-server-rhv-4.2-manager-rpms
+    command: subscription-manager repos --enable=rhel-7-server-rhv-4.2-manager-rpms
+
+  - name: Subscription Manager Enable rhel-7-server-rhv-4-manager-tools-rpms
+    command: subscription-manager repos --enable=rhel-7-server-rhv-4-manager-tools-rpms
+
+  - name: Subscription Manager Enable rhel-7-server-ansible-2-rpms
+    command: subscription-manager repos --enable=rhel-7-server-ansible-2-rpms
+
+  - name: Subscription Manager Enable jb-eap-7-for-rhel-7-server-rpms
+    command: subscription-manager repos --enable=jb-eap-7-for-rhel-7-server-rpms
+
+  - name: Yum Update
+    yum:
+      name: '*'
+      state: latest
+
+  - name: Yum Install Rhvm
+    yum:
+      name: rhvm
+      state: present
+
+  - name: Copy Engine Config
+    template:
+      src: rhvm_answerfile.j2
+      dest: /tmp/rhvm_answerfile
+
+  - name: Enginer-setup 
+    command: engine-setup --config-append=/tmp/rhvm_answerfile
+
