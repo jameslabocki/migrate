@@ -1,15 +1,9 @@
 ---
 # These tasks install rhvm
 
-  - name: Create a file
-    file:
-      path: "/tmp/thisisatestfile"
-      state: touch
-
   - name: Subscription Manager Unregister
     redhat_subscription:
       state: absent  
-
 
   - name: Subscription Manager Register
     redhat_subscription:

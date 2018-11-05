@@ -1,6 +1,28 @@
 # install_rhv.yml
 
-- name: install rhv
+- name: install rhvm
   hosts: rhvm01.test.migr8.org
   roles:
     - rhvm
+
+- name: install rhvh
+  hosts: rhvh01.test.migr8.org
+  roles:
+    - rhvh
+
+- name: install nfs
+  hosts: nfs.test.migr8.org
+  roles:
+    - nfs
+
+#- name: Add host
+#  hosts: rhvm01.test.migr8.org
+#  tasks:
+#  - ovirt_host:
+#       public_key: true
+#       cluster: Default
+#       name: "rhvh01.{{ domain }}"
+#       address: "{{ rhvh01_ipaddr }}"
+#       override_iptables: true
+
+

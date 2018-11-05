@@ -1,0 +1,31 @@
+---
+# These tasks install rhvh
+
+  - name: Subscription Manager Unregister
+    redhat_subscription:
+      state: absent  
+
+  - name: Subscription Manager Register
+    redhat_subscription:
+      state: present
+      username: "{{ rhsm_user }}"
+      password: "{{ rhsm_pass }}"
+      pool_ids: "{{ rhsm_pool }}"
+
+  - name: Subscription Manager Disable All Repos
+    command: subscription-manager repos --disable=*
+
+  - name: Subscription Manager Enable rhel-7-server-rpms
+    command: subscription-manager repos --enable=rhel-7-server-rpms
+
+  - name: Subscription Manager Enable rhel-7-server-rhv-4-mgmt-agent-rpms
+    command: subscription-manager repos --enable=rhel-7-server-rhv-4-mgmt-agent-rpms
+
+  - name: Subscription Manager Enable rhel-7-server-ansible-2-rpms
+    command: subscription-manager repos --enable=rhel-7-server-ansible-2-rpms
+
+  - name: Yum Update
+    yum:
+      name: '*'
+      state: latest
+

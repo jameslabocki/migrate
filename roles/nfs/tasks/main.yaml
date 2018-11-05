@@ -1,0 +1,49 @@
+---
+# These tasks install nfs
+
+  - name: Subscription Manager Unregister
+    redhat_subscription:
+      state: absent  
+
+  - name: Subscription Manager Register
+    redhat_subscription:
+      state: present
+      username: "{{ rhsm_user }}"
+      password: "{{ rhsm_pass }}"
+      pool_ids: "{{ rhsm_pool }}"
+
+  - name: Subscription Manager Disable All Repos
+    command: subscription-manager repos --disable=*
+
+  - name: Subscription Manager Enable rhel-7-server-rpms
+    command: subscription-manager repos --enable=rhel-7-server-rpms
+
+  - name: Subscription Manager Enable rhel-7-server-supplementary-rpms
+    command: subscription-manager repos --enable=rhel-7-server-supplementary-rpms
+
+  - name: Yum Update
+    yum:
+      name: '*'
+      state: latest
+
+  - name: ensure a list of packages installed
+    yum:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - nfs-utils
+      - rpcbind
+
+  - name: Create NFS directory
+    file:
+      path: /opt/nfs
+      state: directory
+      mode: 0755
+
+  - name: Copy Exports file for nfs
+    template:
+      src: exports.j2
+      dest: /etc/exports
+
+  - name: Start NFS Service
+    systemd: state=started name=nfs
