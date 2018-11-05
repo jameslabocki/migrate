@@ -32,4 +32,4 @@ Then run the install_rhv.yaml ansible-playbook (substituting the variables as ne
 
 You should be able to access RHVM at the FQDN you specified. From here, you can add the hosts and storage to your Red Hat Virtualization Manager.
 
-
+I plan to add the instructions for VMware vSphere and CloudForms soon to complete the environment setup.
